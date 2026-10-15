@@ -1,0 +1,109 @@
+// Example program from the following lc3 code:
+//     .orig x3000
+// START
+//     
+//     ld r2, VAR ; register to be bit shifted right
+//     add r3, r3, #5
+//     jsr SHIFT_RIGHT
+//     halt
+// 
+// 
+// ; subroutine that shifts a binary value to the right r3 times
+// ; r2 is the number to be shifted
+// ; r3 is the number of times to shift it, should be greater than 0 and non-negative
+// ; shifted number is returned in r2
+// SHIFT_RIGHT 
+//         ; store registers
+//         st r0, r0Store
+//         st r1, r1Store 
+//         ; we use r2 as input/output
+//         st r3, r3Store
+//         st r4, r4Store
+//         st r5, r5Store 
+//         st r6, r6Store 
+//         and r1, r1, #0 ; reset r1
+//         add r1, r1, #1 ; current bit mask
+//     GET_STARTING_BITMASK ; the starting bitmask controls how many right shifts it does
+//         add r1, r1, r1
+//         add r3, r3, #-1
+//         brp GET_STARTING_BITMASK
+//         and r4, r4, #0 ; offset from LSB of amount of left shifts to get to pos
+//     LOOP
+//         and r6, r6, #0 ; reset r6
+//         and r3, r2, r1 ; apply bit mask and put in r3
+//         brz SKIP ; if its zero we dont need to do anything
+//         add r6, r6, #1 ; register to be bit shifted left
+//         add r5, r4, #0 ; set r5 to r4 to count the left shifts
+//         brz SKIP ; if we need to shift left 0 times, we can skip shifting
+//     SHIFT_LEFT
+//         add r6, r6, r6 
+//         add r5, r5, #-1
+//         brp SHIFT_LEFT
+//     SKIP
+//         add r0, r0, r6
+//         add r4, r4, #1
+//         add r1, r1, r1 
+//         brp LOOP 
+//         add r2, r0, #0 ; move r0 back into r2 so no other registers are changed when calling subroutine
+//         ld r0, r0Store
+//         ld r1, r1Store 
+//         ld r3, r3Store
+//         ld r4, r4Store
+//         ld r5, r5Store 
+//         ld r6, r6Store 
+//         ret
+// VAR .fill x2AA
+// r0Store .fill x0
+// r1Store .fill x0
+// r2Store .fill x0
+// r3Store .fill x0
+// r4Store .fill x0
+// r5Store .fill x0
+// r6Store .fill x0
+// .end
+
+2424
+16e5
+4801
+f025
+3021
+3221
+3622
+3822
+3a22
+3c22
+5260
+1261
+1241
+16ff
+03fd
+5920
+5da0
+5681
+0406
+1da1
+1b20
+0403
+1d86
+1b7f
+03fd
+1006
+1921
+1241
+03f3
+1420
+2007
+2207
+2608
+2808
+2a08
+2c08
+c1c0
+02aa
+0000
+0000
+0000
+0000
+0000
+0000
+0000
